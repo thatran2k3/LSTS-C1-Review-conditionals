@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Conditional Forms - Presentation</title>
+    <style>
+        :root {
+            --primary: #0284C7;
+            --primary-hover: #0369A1;
+            --bg: #F0F9FF;
+            --card-bg: #FFFFFF;
+            --text: #1E293B;
+            --text-light: #475569;
+            --accent: #38BDF8;
+            --success: #10B981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Home Screen Styles */
+        #home-screen {
+            width: 100%;
+            max-width: 900px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .menu-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 30px 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 10px 15px rgba(2, 132, 199, 0.2);
+        }
+
+        .menu-btn span {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .menu-btn:hover span {
+            color: #E0F2FE;
+        }
+
+        /* Presentation Slide Styles */
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-top: 40px;
+            animation: fadeIn 0.4s ease-in-out;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .home-btn {
+            background-color: var(--text-light);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-btn:hover {
+            background-color: var(--text);
+        }
+
+        /* Content within slides */
+        .grammar-note {
+            background-color: #F8FAFC;
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .examples-section h3, .practice-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .example-list {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+
+        .example-list li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #FFFBEB; /* Yellowish background */
+            border-left: 4px solid #F59E0B;
+            border-radius: 4px;
+            color: #92400E;
+        }
+
+        .example-list li .underline {
+            text-decoration: underline;
+            text-decoration-color: #F59E0B;
+            text-decoration-thickness: 2px;
+            font-weight: bold;
+        }
+
+        /* Practice Interactive Section */
+        .practice-item {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background-color: var(--bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .blank-input {
+            border: none;
+            border-bottom: 2px solid var(--primary);
+            background: transparent;
+            font-size: 1.1rem;
+            font-family: inherit;
+            color: var(--primary);
+            font-weight: bold;
+            width: 120px;
+            text-align: center;
+            outline: none;
+        }
+
+        .blank-input:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        .check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .check-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .feedback {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feedback.correct {
+            color: var(--success);
+            opacity: 1;
+        }
+
+        .feedback.incorrect {
+            color: #EF4444;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide all slides initially */
+        .hidden { display: none !important; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .slide { padding: 20px; }
+            .slide-title { font-size: 1.5rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= HOME SCREEN ================= -->
+    <div id="home-screen">
+        <h1>Advanced Conditional Forms</h1>
+        <p class="subtitle">Select a grammar point to present to the class.</p>
+        
+        <div class="menu-grid">
+            <button class="menu-btn" onclick="showSlide('supposing-slide')">
+                Supposing / Imagine
+                <span>(Instead of 'if' in spoken situations)</span>
+            </button>
+            <button class="menu-btn" onclick="showSlide('unless-slide')">
+                Unless
+                <span>(Meaning 'if not')</span>
+            </button>
+            <button class="menu-btn" onclick="showSlide('provided-slide')">
+                Provided (that) / As long as
+                <span>(Meaning 'only if')</span>
+            </button>
+            <button class="menu-btn" onclick="showSlide('incase-slide')">
+                In case
+                <span>(Readiness for future development)</span>
+            </button>
+            <button class="menu-btn" onclick="showSlide('evenif-slide')">
+                Even if
+                <span>(Result happens regardless of condition)</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 1: SUPPOSING / IMAGINE ================= -->
+    <div id="supposing-slide" class="slide">
+        <div class="top-bar">
+            <h2 class="slide-title">Supposing / Imagine</h2>
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        </div>
+        
+        <div class="grammar-note">
+            We often use <strong>supposing</strong> or <strong>imagine</strong> instead of <em>if</em> in spoken situations. This suggests an act of imagination.
+        </div>
+
+        <div class="examples-section">
+            <h3>Examples</h3>
+            <ul class="example-list">
+                <li><span class="underline">Supposing</span> you could go anywhere? Where would you go?</li>
+                <li><span class="underline">Imagine</span> you won the lottery. What would you buy first?</li>
+            </ul>
+        </div>
+
+        <div class="practice-section">
+            <h3>Check your understanding</h3>
+            <div class="practice-item">
+                1. <input type="text" class="blank-input" id="ans-sup-1" placeholder="..."> you lost your keys right now? What would you do? <br><small style="color:var(--text-light);">(Type the missing word)</small>
+                <button class="check-btn" onclick="checkAnswer('ans-sup-1', 'Supposing', 'fb-sup-1')">Check</button>
+                <span class="feedback" id="fb-sup-1"></span>
+            </div>
+            <div class="practice-item">
+                2. <input type="text" class="blank-input" id="ans-sup-2" placeholder="..."> you had to move to another country tomorrow. How would you feel? <br><small style="color:var(--text-light);">(Type the missing word)</small>
+                <button class="check-btn" onclick="checkAnswer('ans-sup-2', 'Imagine', 'fb-sup-2')">Check</button>
+                <span class="feedback" id="fb-sup-2"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 2: UNLESS ================= -->
+    <div id="unless-slide" class="slide">
+        <div class="top-bar">
+            <h2 class="slide-title">Unless</h2>
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        </div>
+        
+        <div class="grammar-note">
+            <strong>Unless</strong> tends to be used more in real conditionals and means <em>if not</em>. We don't use <em>unless</em> in questions.
+        </div>
+
+        <div class="examples-section">
+            <h3>Examples</h3>
+            <ul class="example-list">
+                <li><span class="underline">Unless</span> we change the way we think about work, we'll never be able to face the challenges of the 21st century.</li>
+            </ul>
+        </div>
+
+        <div class="practice-section">
+            <h3>Check your understanding</h3>
+            <p style="margin-bottom: 15px; font-size: 0.95rem; color: var(--text-light);">Rewrite the sentences using <strong>unless</strong>.</p>
+            
+            <div class="practice-item">
+                1. If you don't study, you will fail the test.<br>
+                <strong>→</strong> <input type="text" class="blank-input" id="ans-unl-1" style="width: 80px;" placeholder="..."> you study, you will fail the test.
+                <button class="check-btn" onclick="checkAnswer('ans-unl-1', 'Unless', 'fb-unl-1')">Check</button>
+                <span class="feedback" id="fb-unl-1"></span>
+            </div>
+            
+            <div class="practice-item">
+                2. I won't go to the party if she doesn't invite me.<br>
+                <strong>→</strong> I won't go to the party <input type="text" class="blank-input" id="ans-unl-2" style="width: 80px;" placeholder="..."> she invites me.
+                <button class="check-btn" onclick="checkAnswer('ans-unl-2', 'unless', 'fb-unl-2')">Check</button>
+                <span class="feedback" id="fb-unl-2"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 3: PROVIDED / AS LONG AS ================= -->
+    <div id="provided-slide" class="slide">
+        <div class="top-bar">
+            <h2 class="slide-title">Provided (that) / As long as</h2>
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        </div>
+        
+        <div class="grammar-note">
+            <strong>Provided (that)</strong> / <strong>As long as</strong> has a similar sense of reservation as <em>unless</em> but means <em>only if</em>.
+        </div>
+
+        <div class="examples-section">
+            <h3>Examples</h3>
+            <ul class="example-list">
+                <li><span class="underline">Provided</span> / <span class="underline">As long as</span> the stadium is finished, the games will go ahead as planned.</li>
+            </ul>
+        </div>
+
+        <div class="practice-section">
+            <h3>Check your understanding</h3>
+            <div class="practice-item">
+                1. You can borrow my car, but only if you drive carefully.<br>
+                <strong>→</strong> You can borrow my car <input type="text" class="blank-input" id="ans-pro-1" style="width: 120px;" placeholder="..."> you drive carefully.
+                <button class="check-btn" onclick="checkAnswer('ans-pro-1', 'as long as', 'fb-pro-1', true)">Check</button>
+                <span class="feedback" id="fb-pro-1"></span>
+            </div>
+            <div class="practice-item">
+                2. We will go hiking tomorrow if the weather is good.<br>
+                <strong>→</strong> We will go hiking tomorrow <input type="text" class="blank-input" id="ans-pro-2" style="width: 120px;" placeholder="..."> the weather is good.
+                <button class="check-btn" onclick="checkAnswer('ans-pro-2', 'provided that', 'fb-pro-2', true)">Check</button>
+                <span class="feedback" id="fb-pro-2"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 4: IN CASE ================= -->
+    <div id="incase-slide" class="slide">
+        <div class="top-bar">
+            <h2 class="slide-title">In case</h2>
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        </div>
+        
+        <div class="grammar-note">
+            <strong>In case</strong> is used to suggest readiness for a possible future development.
+        </div>
+
+        <div class="examples-section">
+            <h3>Examples</h3>
+            <ul class="example-list">
+                <li>We'll take snacks <span class="underline">in case</span> we get hungry.</li>
+            </ul>
+        </div>
+
+        <div class="practice-section">
+            <h3>Check your understanding</h3>
+            <div class="practice-item">
+                1. Take an umbrella because it might rain later.<br>
+                <strong>→</strong> Take an umbrella <input type="text" class="blank-input" id="ans-inc-1" style="width: 90px;" placeholder="..."> it rains later.
+                <button class="check-btn" onclick="checkAnswer('ans-inc-1', 'in case', 'fb-inc-1', true)">Check</button>
+                <span class="feedback" id="fb-inc-1"></span>
+            </div>
+            <div class="practice-item">
+                2. I'll write down his number because I might forget it.<br>
+                <strong>→</strong> I'll write down his number <input type="text" class="blank-input" id="ans-inc-2" style="width: 90px;" placeholder="..."> I forget it.
+                <button class="check-btn" onclick="checkAnswer('ans-inc-2', 'in case', 'fb-inc-2', true)">Check</button>
+                <span class="feedback" id="fb-inc-2"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 5: EVEN IF ================= -->
+    <div id="evenif-slide" class="slide">
+        <div class="top-bar">
+            <h2 class="slide-title">Even if</h2>
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        </div>
+        
+        <div class="grammar-note">
+            <strong>Even if</strong> talks about a result that will happen whether or not the condition is true.
+        </div>
+
+        <div class="examples-section">
+            <h3>Examples</h3>
+            <ul class="example-list">
+                <li>We have to eat outside <span class="underline">even if</span> the weather is bad.</li>
+            </ul>
+        </div>
+
+        <div class="practice-section">
+            <h3>Check your understanding</h3>
+            <div class="practice-item">
+                1. The match will continue regardless of whether it snows.<br>
+                <strong>→</strong> The match will continue <input type="text" class="blank-input" id="ans-eve-1" style="width: 90px;" placeholder="..."> it snows.
+                <button class="check-btn" onclick="checkAnswer('ans-eve-1', 'even if', 'fb-eve-1', true)">Check</button>
+                <span class="feedback" id="fb-eve-1"></span>
+            </div>
+            <div class="practice-item">
+                2. She won't forgive him, regardless of how much he apologizes.<br>
+                <strong>→</strong> She won't forgive him <input type="text" class="blank-input" id="ans-eve-2" style="width: 90px;" placeholder="..."> he apologizes.
+                <button class="check-btn" onclick="checkAnswer('ans-eve-2', 'even if', 'fb-eve-2', true)">Check</button>
+                <span class="feedback" id="fb-eve-2"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // Function to show a specific slide and hide the home screen
+        function showSlide(slideId) {
+            // Hide home screen
+            document.getElementById('home-screen').classList.add('hidden');
+            
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Show the targeted slide
+            document.getElementById(slideId).classList.add('active');
+            
+            // Scroll to top for clean presentation
+            window.scrollTo(0, 0);
+        }
+
+        // Function to go back to the home screen
+        function goHome() {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Show home screen
+            document.getElementById('home-screen').classList.remove('hidden');
+        }
+
+        // Function to check practice answers
+        // target: the ID of the input
+        // correctAnswer: the string to match
+        // feedbackId: the ID of the span to show feedback
+        // caseInsensitive: boolean (default false)
+        function checkAnswer(targetId, correctAnswer, feedbackId, caseInsensitive = false) {
+            const inputVal = document.getElementById(targetId).value.trim();
+            const feedbackEl = document.getElementById(feedbackId);
+            
+            let isCorrect = false;
+            
+            if (caseInsensitive) {
+                isCorrect = inputVal.toLowerCase() === correctAnswer.toLowerCase();
+            } else {
+                isCorrect = inputVal === correctAnswer;
+            }
+
+            if (isCorrect) {
+                feedbackEl.textContent = "✔ Correct!";
+                feedbackEl.className = "feedback correct";
+                document.getElementById(targetId).style.borderBottomColor = "var(--success)";
+            } else {
+                feedbackEl.textContent = "✘ Try again";
+                feedbackEl.className = "feedback incorrect";
+                document.getElementById(targetId).style.borderBottomColor = "#EF4444";
+            }
+        }
+
+        // Allow pressing "Enter" to check answer
+        document.querySelectorAll('.blank-input').forEach(input => {
+            input.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    // Find the associated button and click it
+                    const btn = this.nextElementSibling;
+                    if (btn && btn.classList.contains('check-btn')) {
+                        btn.click();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
