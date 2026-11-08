@@ -150,7 +150,7 @@
 </head>
 <body>
 
-    <h1>Conditionals (C2)</h1>
+    <h1>Conditionals</h1>
     <p class="subtitle">Pick a number, complete the sentence, and check the rule.</p>
 
     <div class="grid-container" id="number-grid">
@@ -172,139 +172,157 @@
     </div>
 
     <script>
-        // 25 questions focused strictly on Zero, First, Second, and Third conditionals.
+        // 25 questions mixed randomly across Zero, First, Second, and Third conditionals.
         const questions = [
-            // ZERO CONDITIONAL (General truths)
+            // 1 - FIRST
             {
-                q: "If you ___ ice, it melts.",
-                a: "heat",
-                e: "Zero conditional: used for general truths or scientific facts. Form: If + present simple, present simple."
-            },
-            {
-                q: "When the sun ___, the temperature rises.",
-                a: "sets",
-                e: "Zero conditional: 'when' can replace 'if' to show that a situation happens frequently or is a general truth."
-            },
-            {
-                q: "If you ___ enough water, your body functions properly.",
-                a: "drink",
-                e: "Zero conditional: describes a generally true situation. Present simple in the if-clause."
-            },
-            {
-                q: "Plants die if they ___ enough sunlight.",
-                a: "don't get",
-                e: "Zero conditional: a general truth. Note the negative present simple form in the if-clause."
-            },
-            {
-                q: "If you mix red and blue, you ___ purple.",
-                a: "get",
-                e: "Zero conditional: a scientific/general fact. Present simple in the main clause."
-            },
-            {
-                q: "If employees ___ late repeatedly, they are usually dismissed.",
-                a: "arrive",
-                e: "Zero conditional: a general rule or habitual consequence in the workplace. Present simple in both clauses."
-            },
-
-            // FIRST CONDITIONAL (Possible future)
-            {
-                q: "If we ___ now, we will catch the early train.",
+                q: "If we ___ now, we will catch the early train. (leave)",
                 a: "leave",
                 e: "First conditional: a possible future situation and its likely consequence. Form: If + present simple, will + infinitive."
             },
+            // 2 - THIRD
             {
-                q: "If she ___ the exam, she will celebrate.",
-                a: "passes",
-                e: "First conditional: present simple in the if-clause, 'will + infinitive' in the main clause."
-            },
-            {
-                q: "If the negotiations fail, we ___ have to reconsider our strategy.",
-                a: "will",
-                e: "First conditional: a likely future consequence. The main clause uses 'will + infinitive'."
-            },
-            {
-                q: "If you ___ your passport, you won't be able to board the flight.",
-                a: "lose",
-                e: "First conditional: present simple in the if-clause, negative 'will' in the main clause."
-            },
-            {
-                q: "If it ___ tomorrow, we might cancel the picnic.",
-                a: "rains",
-                e: "First conditional: the main clause can use 'might' (or 'may', 'could') instead of 'will' to show possibility rather than certainty."
-            },
-            {
-                q: "If the company ___ the contract, they will expand their operations.",
-                a: "wins",
-                e: "First conditional: a possible future event and its likely result. Present simple in the if-clause."
-            },
-            {
-                q: "If you ___ your homework, you can go out to play.",
-                a: "finish",
-                e: "First conditional: the main clause can use 'can' for permission/ability, not just 'will'."
-            },
-
-            // SECOND CONDITIONAL (Imaginary present/unlikely future)
-            {
-                q: "If I ___ you, I wouldn't accept that job offer.",
-                a: "were",
-                e: "Second conditional: an imaginary present situation. Use 'were' (not 'was') in the if-clause for all subjects, especially in formal English."
-            },
-            {
-                q: "If I ___ more money, I would buy a house.",
-                a: "had",
-                e: "Second conditional: past simple in the if-clause to describe an imaginary present. Main clause: 'would + infinitive'."
-            },
-            {
-                q: "If she ___ harder, she would pass the exam.",
-                a: "studied",
-                e: "Second conditional: an unlikely or hypothetical future situation. Past simple in the if-clause."
-            },
-            {
-                q: "If we ___ a car, we would drive to the coast every weekend.",
-                a: "had",
-                e: "Second conditional: an imaginary present situation and its hypothetical consequence."
-            },
-            {
-                q: "If I ___ speak Japanese, I would apply for that job in Tokyo.",
-                a: "could",
-                e: "Second conditional: 'could' in the if-clause expresses an imaginary present ability."
-            },
-            {
-                q: "If he ___ more confident, he would speak up in meetings.",
-                a: "were",
-                e: "Second conditional: an imaginary present state. Use 'were' for all subjects in formal English."
-            },
-            {
-                q: "If we ___ the lottery, we would travel the world.",
-                a: "won",
-                e: "Second conditional: an unlikely future situation. Past simple in the if-clause."
-            },
-
-            // THIRD CONDITIONAL (Impossible past)
-            {
-                q: "If the weather ___ so bad, we would have gone to the beach.",
+                q: "If the weather ___ so bad, we would have gone to the beach. (not / be)",
                 a: "hadn't been",
                 e: "Third conditional: an impossible past situation and its consequence. Form: If + past perfect, would have + past participle."
             },
+            // 3 - ZERO
             {
-                q: "If I ___ about the traffic, I would have arrived on time.",
+                q: "If you ___ ice, it melts. (heat)",
+                a: "heat",
+                e: "Zero conditional: used for general truths or scientific facts. Form: If + present simple, present simple."
+            },
+            // 4 - SECOND
+            {
+                q: "If I ___ you, I wouldn't accept that job offer. (be)",
+                a: "were",
+                e: "Second conditional: an imaginary present situation. Use 'were' (not 'was') in the if-clause for all subjects, especially in formal English."
+            },
+            // 5 - THIRD
+            {
+                q: "If I ___ about the traffic, I would have arrived on time. (know)",
                 a: "had known",
                 e: "Third conditional: past perfect in the if-clause, 'would have + past participle' in the main clause."
             },
+            // 6 - FIRST
             {
-                q: "If the speaker ___ droned on, it would have been more interesting.",
+                q: "If she ___ the exam, she will celebrate. (pass)",
+                a: "passes",
+                e: "First conditional: present simple in the if-clause, 'will + infinitive' in the main clause."
+            },
+            // 7 - SECOND
+            {
+                q: "If I ___ more money, I would buy a house. (have)",
+                a: "had",
+                e: "Second conditional: past simple in the if-clause to describe an imaginary present. Main clause: 'would + infinitive'."
+            },
+            // 8 - ZERO
+            {
+                q: "When the sun ___, the temperature rises. (set)",
+                a: "sets",
+                e: "Zero conditional: 'when' can replace 'if' to show that a situation happens frequently or is a general truth."
+            },
+            // 9 - THIRD
+            {
+                q: "If the speaker ___ droned on, it would have been more interesting. (not)",
                 a: "hadn't",
                 e: "Third conditional: negative past perfect in the if-clause. The main clause uses 'would have been'."
             },
+            // 10 - FIRST
             {
-                q: "If they ___ in advance, they could have got a table at the restaurant.",
+                q: "If the negotiations fail, we ___ have to reconsider our strategy. (will)",
+                a: "will",
+                e: "First conditional: a likely future consequence. The main clause uses 'will + infinitive'."
+            },
+            // 11 - SECOND
+            {
+                q: "If she ___ harder, she would pass the exam. (study)",
+                a: "studied",
+                e: "Second conditional: an unlikely or hypothetical future situation. Past simple in the if-clause."
+            },
+            // 12 - ZERO
+            {
+                q: "If you ___ enough water, your body functions properly. (drink)",
+                a: "drink",
+                e: "Zero conditional: describes a generally true situation. Present simple in the if-clause."
+            },
+            // 13 - THIRD
+            {
+                q: "If they ___ in advance, they could have got a table at the restaurant. (book)",
                 a: "had booked",
                 e: "Third conditional: the main clause can use 'could have' instead of 'would have' to express ability/possibility."
             },
+            // 14 - FIRST
             {
-                q: "If she ___ the instructions carefully, she wouldn't have made so many errors.",
+                q: "If you ___ your passport, you won't be able to board the flight. (lose)",
+                a: "lose",
+                e: "First conditional: present simple in the if-clause, negative 'will' in the main clause."
+            },
+            // 15 - SECOND
+            {
+                q: "If we ___ a car, we would drive to the coast every weekend. (have)",
+                a: "had",
+                e: "Second conditional: an imaginary present situation and its hypothetical consequence."
+            },
+            // 16 - ZERO
+            {
+                q: "Plants die if they ___ enough sunlight. (not / get)",
+                a: "don't get",
+                e: "Zero conditional: a general truth. Note the negative present simple form in the if-clause."
+            },
+            // 17 - THIRD
+            {
+                q: "If she ___ the instructions carefully, she wouldn't have made so many errors. (read)",
                 a: "had read",
                 e: "Third conditional: past perfect in the if-clause, 'wouldn't have + past participle' in the main clause."
+            },
+            // 18 - FIRST
+            {
+                q: "If it ___ tomorrow, we might cancel the picnic. (rain)",
+                a: "rains",
+                e: "First conditional: the main clause can use 'might' (or 'may', 'could') instead of 'will' to show possibility rather than certainty."
+            },
+            // 19 - SECOND
+            {
+                q: "If I ___ speak Japanese, I would apply for that job in Tokyo. (can)",
+                a: "could",
+                e: "Second conditional: 'could' in the if-clause expresses an imaginary present ability."
+            },
+            // 20 - ZERO
+            {
+                q: "If you mix red and blue, you ___ purple. (get)",
+                a: "get",
+                e: "Zero conditional: a scientific/general fact. Present simple in the main clause."
+            },
+            // 21 - THIRD
+            {
+                q: "If I ___ known about the meeting, I would have attended. (have)",
+                a: "had",
+                e: "Third conditional: past perfect in the if-clause. Here the auxiliary 'had' is the missing word before 'known'."
+            },
+            // 22 - FIRST
+            {
+                q: "If the company ___ the contract, they will expand their operations. (win)",
+                a: "wins",
+                e: "First conditional: a possible future event and its likely result. Present simple in the if-clause."
+            },
+            // 23 - SECOND
+            {
+                q: "If he ___ more confident, he would speak up in meetings. (be)",
+                a: "were",
+                e: "Second conditional: an imaginary present state. Use 'were' for all subjects in formal English."
+            },
+            // 24 - ZERO
+            {
+                q: "If employees ___ late repeatedly, they are usually dismissed. (arrive)",
+                a: "arrive",
+                e: "Zero conditional: a general rule or habitual consequence in the workplace. Present simple in both clauses."
+            },
+            // 25 - SECOND
+            {
+                q: "If we ___ the lottery, we would travel the world. (win)",
+                a: "won",
+                e: "Second conditional: an unlikely future situation. Past simple in the if-clause."
             }
         ];
 
